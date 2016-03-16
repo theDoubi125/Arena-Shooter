@@ -9,6 +9,16 @@
         <GameTreeElement name="Timer10" type="TimerFunction">
           <attribute name="Time" value="10"/>
         </GameTreeElement>
+        <GameTreeElement name="Sequence1" type="SequentialAnd">
+          <childs>
+            <GameTreeElement name="SeqTimer1" type="TimerFunction">
+              <attribute name="Time" value="2.5"/>
+            </GameTreeElement>
+            <GameTreeElement name="SeqTimer2" type="TimerFunction">
+              <attribute name="Time" value="2.5"/>
+            </GameTreeElement>
+          </childs>
+        </GameTreeElement>
       </childs>
     </GameTreeElement>
   </GameTree>

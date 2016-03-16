@@ -24,7 +24,6 @@ namespace Assets.GameTree.Functions
             base.Setup();
 
             m_timer = 0;
-            Active = false;
         }
 
         public override void Update()

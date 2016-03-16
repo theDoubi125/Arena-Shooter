@@ -17,6 +17,8 @@ namespace Assets.GameTree
                 return new ParallelOr(_engine);
             else if (_typeName == "TimerFunction")
                 return new TimerFunction(_engine);
+            else if (_typeName == "SequentialAnd")
+                return new SequentialAnd(_engine);
 
             return null;
         }

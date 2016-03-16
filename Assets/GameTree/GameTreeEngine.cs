@@ -66,20 +66,27 @@ namespace Assets.GameTree
                 return;
 
             // Setting display color
-            switch(op.State)
+            if(op.Active)
             {
-                case GameTreeOperator.GameOperatorState.FAILURE:
-                    GUI.color = Color.red;
-                    break;
-                case GameTreeOperator.GameOperatorState.SUCCESS:
-                    GUI.color = Color.green;
-                    break;
-                case GameTreeOperator.GameOperatorState.INDETERMINATE:
-                    GUI.color = Color.yellow;
-                    break;
-                default:
-                    GUI.color = Color.grey;
-                    break;
+                switch(op.State)
+                {
+                    case GameTreeOperator.GameOperatorState.FAILURE:
+                        GUI.color = Color.red;
+                        break;
+                    case GameTreeOperator.GameOperatorState.SUCCESS:
+                        GUI.color = Color.green;
+                        break;
+                    case GameTreeOperator.GameOperatorState.INDETERMINATE:
+                        GUI.color = Color.yellow;
+                        break;
+                    default:
+                        GUI.color = Color.grey;
+                        break;
+                }
+            }
+            else
+            {
+                GUI.color = Color.grey;
             }
 
             string txt = "";

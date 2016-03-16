@@ -26,13 +26,18 @@ namespace Assets.GameTree.Operators
         {
             base.Update();
 
+            if (Childs == null)
+            {
+                State = GameOperatorState.SUCCESS;
+                return;
+            }
+
             bool allFailure = true;
             foreach(var child in m_Childs)
             {
                 if(child.State == GameOperatorState.SUCCESS)
                 {
                     State = GameOperatorState.SUCCESS;
-                    Active = false;
                     allFailure = false;
                 }
                 else if(child.State == GameOperatorState.INDETERMINATE)
@@ -45,7 +50,6 @@ namespace Assets.GameTree.Operators
             if(allFailure)
             {
                 State = GameOperatorState.FAILURE;
-                Active = false;
             }
         }
     }

@@ -44,6 +44,13 @@ namespace Assets.GameTree
         public virtual void Setup()
         {
             m_Childs = m_Engine.GetChildsOfOperator(this);
+            Active = false;
+            State = GameOperatorState.INDETERMINATE;
+
+            foreach(var child in m_Childs)
+            {
+                child.Setup();
+            }
         }
 
         public virtual void Activate()
