@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace Assets.GameTree
 {
@@ -21,9 +22,19 @@ namespace Assets.GameTree
             get { return m_childs; }
         }
 
+        public GameTreeElement()
+        {
+            m_operator = null;
+        }
+
         public GameTreeElement(GameTreeOperator _operator)
         {
             m_operator = _operator;
+        }
+
+        public void ParseXml(XmlNode _node)
+        {
+            string type = _node.Attributes["type"].Value;
         }
 
         public void Add(GameTreeOperator _operator)

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GameTreeDescription>
+  <GameTree name="SimpleTree">
+    <GameTreeElement name="Root" type="ParallelAnd">
+      <childs>
+        <GameTreeElement name="Timer5" type="TimerFunction">
+          <attribute name="Time" value="5"/>
+        </GameTreeElement>
+        <GameTreeElement name="Timer10" type="TimerFunction">
+          <attribute name="Time" value="10"/>
+        </GameTreeElement>
+      </childs>
+    </GameTreeElement>
+  </GameTree>
+</GameTreeDescription>

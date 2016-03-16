@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using UnityEngine;
+using System.Xml;
 
 namespace Assets.GameTree
 {
@@ -28,6 +28,11 @@ namespace Assets.GameTree
         protected IEnumerable<GameTreeOperator> m_Childs;
         protected GameTreeEngine m_Engine = null;
 
+        public IEnumerable<GameTreeOperator> Childs
+        {
+            get { return m_Childs; }
+        }
+
         public GameTreeOperator(GameTreeEngine _engine)
         {
             m_Engine = _engine;
@@ -51,24 +56,14 @@ namespace Assets.GameTree
 
         }
 
+        public virtual void ParseAttribute(string _name, string _value)
+        {
+
+        }
+
         public override string ToString()
         {
             return Name + " is in " + State + " state.";
-        }
-
-        public Color GetColor()
-        {
-            switch(State)
-            {
-                case GameOperatorState.FAILURE:
-                    return Color.red;
-                case GameOperatorState.INDETERMINATE:
-                    return Color.yellow;
-                case GameOperatorState.SUCCESS:
-                    return Color.green;
-                default:
-                    return Color.gray;
-            }
         }
     }
 }

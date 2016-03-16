@@ -2,21 +2,48 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
 
 namespace Assets.GameTree
 {
     public class GameTree
     {
         GameTreeElement m_root;
+        public string Name { get; private set; }
 
-        public GameTree()
+        public GameTree(string _name)
         {
-            
+            Name = _name;
+        }
+
+        public void Reset()
+        {
+            m_root.Operator.Setup();
+        }
+
+        public void Start()
+        {
+            m_root.Operator.Activate();
         }
 
         public void Update()
         {
             m_root.Operator.Update();
+        }
+
+        public void SetRoot(GameTreeOperator _operator)
+        {
+            m_root = new GameTreeElement(_operator);
+        }
+
+        public void SetRoot(GameTreeElement _root)
+        {
+            m_root = _root;
+        }
+
+        public GameTreeOperator GetRootOperator()
+        {
+            return m_root.Operator;
         }
 
         public void AddOperator(string _parentID, GameTreeOperator _operator)
