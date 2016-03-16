@@ -30,7 +30,8 @@ namespace Assets.GameTree
 
         public void Update()
         {
-            m_root.Operator.Update();
+            if(m_root.Operator.State == GameTreeOperator.GameOperatorState.INDETERMINATE)
+                m_root.Operator.Update();
         }
 
         public void SetRoot(GameTreeOperator _operator)

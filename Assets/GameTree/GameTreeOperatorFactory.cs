@@ -19,6 +19,8 @@ namespace Assets.GameTree
                 return new TimerFunction(_engine);
             else if (_typeName == "SequentialAnd")
                 return new SequentialAnd(_engine);
+            else if (_typeName == "DebugFailureFonction")
+                return new DebugFailureFonction(_engine);
 
             return null;
         }
