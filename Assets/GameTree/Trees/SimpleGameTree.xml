@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <GameTreeDescription>
-  <GameTree name="SimpleTree">
+  <GameTree name="SimpleTree" difficulty="0">
     <GameTreeElement name="Root" type="ParallelAnd">
       <childs>
         <GameTreeElement name="Timer5" type="TimerFunction">

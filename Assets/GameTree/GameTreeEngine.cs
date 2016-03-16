@@ -117,7 +117,9 @@ namespace Assets.GameTree
         public GameTree LoadGameTree(XmlNode _node)
         {
             string name = _node.Attributes["name"].Value;
-            GameTree tree = new GameTree(name);
+            string difficulty = _node.Attributes["difficulty"].Value;
+
+            GameTree tree = new GameTree(name, int.Parse(difficulty));
             GameTreeElement root = LoadGameTreeElement(_node.FirstChild);
             if(root != null)
             {

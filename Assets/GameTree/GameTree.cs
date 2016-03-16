@@ -10,10 +10,12 @@ namespace Assets.GameTree
     {
         GameTreeElement m_root;
         public string Name { get; private set; }
+        public int DifficultyRating { get; set; }
 
-        public GameTree(string _name)
+        public GameTree(string _name, int _difficulty)
         {
             Name = _name;
+            DifficultyRating = _difficulty;
         }
 
         public void Reset()
