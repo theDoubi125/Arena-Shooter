@@ -21,8 +21,12 @@ namespace Assets.GameTree
                 return new SequentialAnd(_engine);
             else if (_typeName == "DebugFailureFonction")
                 return new DebugFailureFonction(_engine);
-			else if (_typeName == "SpawnEnemyFunction")
-				return new SpawnEnemyFunction(_engine);
+            else if (_typeName == "SpawnEnemyFunction")
+                return new SpawnEnemyFunction(_engine);
+            else if (_typeName == "FailOnPlayerDieFunction")
+                return new FailOnPlayerDieFunction(_engine);
+            else if (_typeName == "First")
+                return new First(_engine);
 
             return null;
         }

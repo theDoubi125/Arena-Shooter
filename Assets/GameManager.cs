@@ -6,6 +6,14 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager = null;
     public SpawnManager spawnManager = null;
 
+    private static GameManager s_Instance = null;
+    public static GameManager Instance { get { return s_Instance; } }
+
+    void Awake()
+    {
+        s_Instance = this;
+    }
+
     public void Reset()
     {
         if (spawnManager != null)

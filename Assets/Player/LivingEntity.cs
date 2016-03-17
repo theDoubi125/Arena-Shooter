@@ -7,8 +7,12 @@ public class LivingEntity : MonoBehaviour
 {
     public int maxHealth;
     private int health;
+
+    public int Health { get { return health; } }
 	
 	private SpawnEnemyFunction spawnEnemyFunction = null;
+
+
 
 	// Use this for initialization
 	void Start ()
@@ -58,15 +62,7 @@ public class LivingEntity : MonoBehaviour
     }
 	
 	private void PlayerDied()
-	{
-		GameObject gameManagerGO = GameObject.Find("GameManager");
-		
-		if(gameManagerGO != null)
-		{
-			GameManager gameManager = gameManagerGO.GetComponent<GameManager>();
-			if (gameManager != null)
-				gameManager.WaveWon(false);
-		}
+	{		
 	}
 	
 	public void SetSpawnEnemyFunction(SpawnEnemyFunction function)

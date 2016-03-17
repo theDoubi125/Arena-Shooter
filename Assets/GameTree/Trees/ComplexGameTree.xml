@@ -2,8 +2,10 @@
 <GameTreeDescription>
   <GameTree name="ComplexTree" difficulty="0">
     
-    <GameTreeElement name="Root" type="ParallelAnd">
+    <GameTreeElement name="Root" type="First">
       <childs>
+
+        <GameTreeElement name="PlayerDeath" type="FailOnPlayerDieFunction"/>
         
         <GameTreeElement name="ParallelOr1" type="ParallelOr">
           <childs>
