@@ -24,10 +24,21 @@ public class GameManager : MonoBehaviour
                 if (entity.tag != "Player")
                     Destroy(entity.gameObject);
                 else
+                {
                     entity.Reset();
+                    entity.GetComponent<PlayerController>().Reset();
+                }
             }
+
+            Projectile[] projectiles = FindObjectsOfType<Projectile>();
+            foreach (Projectile proj in projectiles)
+            {
+                Destroy(proj.gameObject);
+            }
+
             uiManager.SetWaveLostMenuVisibility(false);
             uiManager.SetWaveWonMenuVisibility(false);
+
             spawnManager.Reset();
         }
         else

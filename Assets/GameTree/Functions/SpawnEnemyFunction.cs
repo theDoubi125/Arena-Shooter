@@ -11,6 +11,7 @@ namespace Assets.GameTree.Functions
 		private SpawnManager spawnManager;
 
         public string value;
+        int healthBoss;
 
         System.Random rnd = new System.Random();
 		
@@ -31,7 +32,12 @@ namespace Assets.GameTree.Functions
             base.Activate();
 
             if (Name == "Type" && spawnManager)
-                spawnManager.AddToQueue(value, this);
+            {
+                if (value == "BossEnemy")
+                    spawnManager.AddToQueue(value, this, healthBoss);
+                else
+                    spawnManager.AddToQueue(value, this, 0);
+            }
         }
 
         public override void Setup()
@@ -51,6 +57,10 @@ namespace Assets.GameTree.Functions
                 Name = _name;
                 value = _value;
 			}
+            else if (_name == "Health")
+            {
+                healthBoss = Int32.Parse(_value);
+            }
         }
 		
 		public void HasPlayerWon(int success)
@@ -86,6 +96,14 @@ namespace Assets.GameTree.Functions
                     --m_Engine.nbBasicEnemy;
                 }
             }
+            else if (value == "BossEnemy")
+            {
+                GameTreeElement father = m_Engine.GetTreeElementOfOperator(this).Father;
+                if (father != null)
+                {
+                    --healthBoss;
+                }
+            }
         }
 
         protected override void Harder()
@@ -95,24 +113,30 @@ namespace Assets.GameTree.Functions
             GameTreeElement father = m_Engine.GetTreeElementOfOperator(this).Father;
             if (father != null && Name != "Root")
             {
-                int nb = rnd.Next(0, 2);
-                if (nb == 0)
+                if (value == "BossEnemy")
                 {
-                    father.Add(new GameTreeElement(m_Engine.GetTreeElementOfOperator(this)));
-
-                    if (value == "BasicEnemy")
-                    {
-                        ++m_Engine.nbBasicEnemy;
-                    }
-                    else if (value == "ShooterEnemy")
-                    {
-                        ++m_Engine.nbShooterEnemy;
-                    } 
+                    ++healthBoss;
                 }
                 else
                 {
-                    if (father.Father != null && Name != "Root")
+                    int nb = rnd.Next(0, 2);
+                    if (nb == 0)
+                    {
+                        father.Add(new GameTreeElement(m_Engine.GetTreeElementOfOperator(this)));
+
+                        if (value == "BasicEnemy")
+                        {
+                            ++m_Engine.nbBasicEnemy;
+                        }
+                        else if (value == "ShooterEnemy")
+                        {
+                            ++m_Engine.nbShooterEnemy;
+                        }
+                    }
+                    else if (father.Father != null && Name != "Root")
+                    {
                         father.Father.Add(new GameTreeElement(father));
+                    }
                 }
             }
         }

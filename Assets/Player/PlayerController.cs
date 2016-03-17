@@ -7,13 +7,20 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D body;
     public float acceleration, deceleration;
     private Weapon weapon;
+    Vector3 initPos;
 
 	// Use this for initialization
 	void Start ()
     {
         this.body = GetComponent<Rigidbody2D>();
         this.weapon = GetComponent<Weapon>();
+        initPos = transform.position;
 	}
+
+    public void Reset()
+    {
+        transform.position = initPos;
+    }
 
     void Update()
     {

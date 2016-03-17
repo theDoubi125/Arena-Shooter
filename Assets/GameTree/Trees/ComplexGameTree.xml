@@ -11,61 +11,73 @@
           <childs>
             <GameTreeElement name="FailureAwaits" type="DebugFailureFonction"/>
             
-			<GameTreeElement name="ParallelAnd1" type="ParallelAnd">
+			<GameTreeElement name="Father" type="SequentialAnd">
 			  <childs>
-			  
+			
 				<GameTreeElement name="ParallelAnd1" type="ParallelAnd">
 				  <childs>
 				  
-					<GameTreeElement name="Father" type="SequentialAnd">
+					<GameTreeElement name="ParallelAnd1" type="ParallelAnd">
 					  <childs>
 					  
-						<GameTreeElement name="ShooterEnemySpawn" type="SpawnEnemyFunction">
-						<attribute name="Type" value="ShooterEnemy"/>
+						<GameTreeElement name="Father" type="SequentialAnd">
+						  <childs>
+						  
+							<GameTreeElement name="ShooterEnemySpawn" type="SpawnEnemyFunction">
+							<attribute name="Type" value="ShooterEnemy"/>
+							</GameTreeElement>
+							
+						  </childs>
 						</GameTreeElement>
-						
-					  </childs>
-					</GameTreeElement>
-				  
-					<GameTreeElement name="Father" type="SequentialAnd">
-					  <childs>
 					  
-						<GameTreeElement name="ShooterEnemySpawn" type="SpawnEnemyFunction">
-						<attribute name="Type" value="ShooterEnemy"/>
+						<GameTreeElement name="Father" type="SequentialAnd">
+						  <childs>
+						  
+							<GameTreeElement name="ShooterEnemySpawn" type="SpawnEnemyFunction">
+							<attribute name="Type" value="ShooterEnemy"/>
+							</GameTreeElement>
+							
+						  </childs>
 						</GameTreeElement>
-						
+					
 					  </childs>
 					</GameTreeElement>
+					
+					<GameTreeElement name="par" type="ParallelAnd">
+					  <childs>
+						
+						<GameTreeElement name="Sequence1" type="SequentialAnd">
+						  <childs>
+							
+							<GameTreeElement name="BasicEnemySpawn" type="SpawnEnemyFunction">
+							  <attribute name="Type" value="BasicEnemy"/>
+							</GameTreeElement>
+							
+						  </childs>
+						</GameTreeElement>
 				
+						<GameTreeElement name="Sequence1" type="SequentialAnd">
+						  <childs>
+							
+							<GameTreeElement name="BasicEnemySpawn" type="SpawnEnemyFunction">
+							  <attribute name="Type" value="BasicEnemy"/>
+							</GameTreeElement>
+							
+						  </childs>
+						</GameTreeElement>
+						
+					  </childs>
+					</GameTreeElement>
+					
 				  </childs>
 				</GameTreeElement>
 				
-				<GameTreeElement name="par" type="ParallelAnd">
-				  <childs>
-					
-					<GameTreeElement name="Sequence1" type="SequentialAnd">
-					  <childs>
-						
-						<GameTreeElement name="BasicEnemySpawn" type="SpawnEnemyFunction">
-						  <attribute name="Type" value="BasicEnemy"/>
-						</GameTreeElement>
-						
-					  </childs>
-					</GameTreeElement>
+				
+				<GameTreeElement name="BossEnemySpawn" type="SpawnEnemyFunction">
+				  <attribute name="Type" value="BossEnemy"/>
+				  <attribute name="Health" value="8"/>
+				</GameTreeElement>
 			
-					<GameTreeElement name="Sequence1" type="SequentialAnd">
-					  <childs>
-						
-						<GameTreeElement name="BasicEnemySpawn" type="SpawnEnemyFunction">
-						  <attribute name="Type" value="BasicEnemy"/>
-						</GameTreeElement>
-						
-					  </childs>
-					</GameTreeElement>
-					
-				  </childs>
-				</GameTreeElement>
-				
               </childs>
 			</GameTreeElement>
 			
