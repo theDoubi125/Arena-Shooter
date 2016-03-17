@@ -11,6 +11,8 @@ namespace Assets.GameTree.Functions
 		private SpawnManager spawnManager;
 
         public string value;
+
+        System.Random rnd = new System.Random();
 		
         public SpawnEnemyFunction(GameTreeEngine _engine) : base(_engine)
         { 
@@ -93,19 +95,25 @@ namespace Assets.GameTree.Functions
             GameTreeElement father = m_Engine.GetTreeElementOfOperator(this).Father;
             if (father != null && Name != "Root")
             {
-                father.Add(new GameTreeElement(m_Engine.GetTreeElementOfOperator(this)));
-
-                if (value == "BasicEnemy")
+                int nb = rnd.Next(0, 2);
+                if (nb == 0)
                 {
-                    ++m_Engine.nbBasicEnemy;
-                }
-                else if (value == "ShooterEnemy")
-                {
-                    ++m_Engine.nbShooterEnemy;
-                }
+                    father.Add(new GameTreeElement(m_Engine.GetTreeElementOfOperator(this)));
 
-                if (father.Father != null && Name != "Root")
-                    father.Father.Add(new GameTreeElement(father));
+                    if (value == "BasicEnemy")
+                    {
+                        ++m_Engine.nbBasicEnemy;
+                    }
+                    else if (value == "ShooterEnemy")
+                    {
+                        ++m_Engine.nbShooterEnemy;
+                    } 
+                }
+                else
+                {
+                    if (father.Father != null && Name != "Root")
+                        father.Father.Add(new GameTreeElement(father));
+                }
             }
         }
     }
