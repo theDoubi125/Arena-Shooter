@@ -120,7 +120,8 @@ namespace Assets.GameTree
         {
             if(m_DebugMode && m_CurrentTree != null)
             {
-                GUILayout.BeginArea(new Rect(10, 10, Screen.width - 20, Screen.height - 20), "Tree: " + m_CurrentTree.Name);
+                GUILayout.BeginArea(new Rect(10, 10, Screen.width - 20, Screen.height - 20), new GUIStyle() { margin = new RectOffset(0, 0, 2, 2) });
+                GUILayout.Label("<color=black>Tree: " + m_CurrentTree.Name+"</color>");
                 DebugDrawOperator(m_CurrentTree.GetRootOperator(), 0);
                 GUILayout.EndArea();
             }
@@ -133,35 +134,36 @@ namespace Assets.GameTree
                 return;
 
             // Setting display color
+            string color = "";
             if(op.Active)
             {
                 switch(op.State)
                 {
                     case GameTreeOperator.GameOperatorState.FAILURE:
-                        GUI.color = Color.red;
+                        color = "red";
                         break;
                     case GameTreeOperator.GameOperatorState.SUCCESS:
-                        GUI.color = Color.green;
+                        color = "green";
                         break;
                     case GameTreeOperator.GameOperatorState.INDETERMINATE:
-                        GUI.color = Color.yellow;
+                        color = "orange";
                         break;
                     default:
-                        GUI.color = Color.grey;
+                        color = "grey";
                         break;
                 }
             }
             else
             {
-                GUI.color = Color.grey;
+                color = "grey";
             }
 
-            string txt = "";
+            string txt = "<color="+color+">";
             for (int i = 0; i < tab; ++i)
                 txt += '\t';
             txt += op.ToString();
-
-            GUILayout.Label(txt);
+            txt += "</color>";
+            GUILayout.Label(txt, new GUIStyle() { fontSize = 10 });
             if(op.Childs != null)
             {
                 foreach(var child in op.Childs)

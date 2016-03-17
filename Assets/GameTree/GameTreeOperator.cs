@@ -103,7 +103,7 @@ namespace Assets.GameTree
 
         public override string ToString()
         {
-            return Name + " is in " + State + " state.";
+            return Active ? Name + " is in " + State + " state." : Name + " is not active.";
         }
     }
 }
