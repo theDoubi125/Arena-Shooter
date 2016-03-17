@@ -68,17 +68,19 @@ namespace Assets.GameTree.Functions
 
             if (value == "ShooterEnemy")
             {
-                if (m_Engine.nbShooterEnemy > 1)
+                GameTreeElement father = m_Engine.GetTreeElementOfOperator(this).Father;
+                if (m_Engine.nbShooterEnemy > 1 && father != null)
                 {
-                    m_Engine.GetTreeElementOfOperator(this).Father.Remove(this);
+                    father.Remove(this);
                     --m_Engine.nbShooterEnemy;
                 }
             }
             else if (value == "BasicEnemy")
             {
-                if (m_Engine.nbBasicEnemy > 1)
+                GameTreeElement father = m_Engine.GetTreeElementOfOperator(this).Father;
+                if (m_Engine.nbBasicEnemy > 1 && father != null)
                 {
-                    m_Engine.GetTreeElementOfOperator(this).Father.Remove(this);
+                    father.Remove(this);
                     --m_Engine.nbBasicEnemy;
                 }
             }
