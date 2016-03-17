@@ -19,6 +19,9 @@ namespace Assets.GameTree
 
         public bool m_DebugMode = true;
 
+        public int nbBasicEnemy = 0;
+        public int nbShooterEnemy = 0;
+
         void Start()
         {
             Load(m_File);
@@ -32,6 +35,11 @@ namespace Assets.GameTree
                 if (Input.GetButtonDown("Submit"))
                 {
                     gameManager.Reset();
+                    var elems = m_CurrentTree.GetNodes().ToArray();
+                    foreach (var elem in elems)
+                    {
+                        elem.Operator.Evolve();
+                    }
                     SwitchTree("ComplexTree");
                 }
             }
@@ -55,6 +63,7 @@ namespace Assets.GameTree
             m_CurrentTree = m_Trees[_tree];
             m_CurrentTree.Reset();
             m_CurrentTree.Start();
+            UpdateNbEnnemy();
         }
 
         public IEnumerable<GameTreeOperator> GetChildsOfOperator(GameTreeOperator _operator)
@@ -68,6 +77,43 @@ namespace Assets.GameTree
             }
 
             return null;
+        }
+
+        public GameTreeElement GetTreeElementOfOperator(GameTreeOperator _operator)
+        {
+            foreach (var elem in m_CurrentTree.GetNodes())
+            {
+                if (elem.Operator == _operator)
+                {
+                    return elem;
+                }
+            }
+
+            return null;
+        }
+
+        void UpdateNbEnnemy()
+        {
+            nbBasicEnemy = 0;
+            nbShooterEnemy = 0;
+            foreach (var elem in m_CurrentTree.GetNodes())
+            {
+                Functions.SpawnEnemyFunction op = elem.Operator as Functions.SpawnEnemyFunction;
+                if (op != null)
+                {
+                    if (op.value == "ShooterEnemy")
+                    {
+                        ++nbShooterEnemy;
+                    }
+                    else if (op.value == "BasicEnemy")
+                    {
+                        ++nbBasicEnemy;
+                    }
+                }
+            }
+
+            nbShooterEnemy /= 2;
+            nbBasicEnemy /= 2;
         }
 
         public void OnGUI()
@@ -185,7 +231,10 @@ namespace Assets.GameTree
                         {
                             var childElem = LoadGameTreeElement(element);
                             if(childElem != null)
+                            {
                                 elem.Add(childElem);
+                                childElem.SetFather(elem);
+                            }
                         }
                     }
                 }

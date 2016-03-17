@@ -14,6 +14,9 @@ namespace Assets.GameTree.Functions
         public TimerFunction(GameTreeEngine _engine) : base(_engine)
         { }
 
+        public TimerFunction(GameTreeOperator _operator) : base(_operator)
+        { }
+
         public override void Activate()
         {
             base.Activate();

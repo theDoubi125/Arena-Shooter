@@ -12,6 +12,9 @@ namespace Assets.GameTree.Operators
         public SequentialAnd(GameTreeEngine _engine) : base(_engine)
         {}
 
+        public SequentialAnd(GameTreeOperator _operator) : base(_operator)
+        { }
+
         public override void Setup()
         {
             base.Setup();
@@ -31,7 +34,7 @@ namespace Assets.GameTree.Operators
         {
             base.Update();
 
-            if(Childs == null)
+            if(Childs == null || Childs.Count() == 0)
             {
                 State = GameOperatorState.SUCCESS;
                 return;

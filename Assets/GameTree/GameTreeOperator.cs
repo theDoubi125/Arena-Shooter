@@ -15,11 +15,19 @@ namespace Assets.GameTree
             FAILURE,
         }
 
+        public bool easier;
+        public bool harder;
+
         private GameOperatorState m_state;
         public GameOperatorState State
         {
             get { return m_state; }
-            protected set { m_state = value; }
+            protected set
+            {
+                m_state = value;
+                harder = (m_state == GameOperatorState.SUCCESS);
+                easier = (m_state == GameOperatorState.FAILURE);
+            }
         }
 
 
@@ -38,6 +46,13 @@ namespace Assets.GameTree
             m_Engine = _engine;
             State = GameOperatorState.INDETERMINATE;
             Name = "Default";
+        }
+
+        public GameTreeOperator(GameTreeOperator _operator)
+        {
+            m_Engine = _operator.m_Engine;
+            State = GameOperatorState.INDETERMINATE;
+            Name = "Generated";
         }
 
         // Called when the tree is instantiated
@@ -60,7 +75,25 @@ namespace Assets.GameTree
 
         public virtual void Update()
         {
+            
+        }
 
+        protected virtual void Harder()
+        {
+            harder = false;
+        }
+
+        protected virtual void Easier()
+        {
+            easier = false;
+        }
+
+        public void Evolve()
+        {
+            if (easier)
+                Easier();
+            else if (harder)
+                Harder();
         }
 
         public virtual void ParseAttribute(string _name, string _value)

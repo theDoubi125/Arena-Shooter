@@ -13,6 +13,9 @@ namespace Assets.GameTree.Functions
         public DebugFailureFonction(GameTreeEngine _engine) : base(_engine)
         { }
 
+        public DebugFailureFonction(DebugFailureFonction _operator) : base(_operator)
+        { }
+
         public override void Setup()
         {
             base.Setup();

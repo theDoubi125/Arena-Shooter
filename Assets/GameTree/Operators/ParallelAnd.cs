@@ -11,6 +11,10 @@ namespace Assets.GameTree.Operators
         {
         }
 
+        public ParallelAnd(GameTreeOperator _operator) : base(_operator)
+        {
+        }
+
         // Activate all childs on activation
         public override void Activate()
         {
@@ -27,7 +31,7 @@ namespace Assets.GameTree.Operators
         {
             base.Update();
 
-            if (Childs == null)
+            if (Childs == null || Childs.Count() == 0)
             {
                 State = GameOperatorState.SUCCESS;
                 return;

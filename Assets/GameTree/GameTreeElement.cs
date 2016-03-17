@@ -22,6 +22,13 @@ namespace Assets.GameTree
             get { return m_childs; }
         }
 
+        GameTreeElement m_father;
+
+        public GameTreeElement Father
+        {
+            get { return m_father; }
+        }
+
         public GameTreeElement()
         {
             m_operator = null;
@@ -32,9 +39,28 @@ namespace Assets.GameTree
             m_operator = _operator;
         }
 
+        public GameTreeElement(GameTreeElement _elem)
+        {
+            Type type = _elem.Operator.GetType();
+            System.Reflection.ConstructorInfo constructor = type.GetConstructor(new Type[] { type });
+            m_operator = constructor.Invoke(new object[] { _elem.Operator }) as GameTreeOperator;
+            foreach (GameTreeOperator op in _elem.Operator.Childs)
+            {
+                type = op.GetType();
+                constructor = type.GetConstructor(new Type[] { type });
+                Add(constructor.Invoke(new object[] { op }) as GameTreeOperator);
+            }
+            m_father = _elem.Father;
+        }
+
         public void ParseXml(XmlNode _node)
         {
             string type = _node.Attributes["type"].Value;
+        }
+
+        public void SetFather(GameTreeElement _elem)
+        {
+            m_father = _elem;
         }
 
         public void Add(GameTreeOperator _operator)

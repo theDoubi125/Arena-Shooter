@@ -10,11 +10,13 @@ public class GameManager : MonoBehaviour
     {
         if (spawnManager != null)
         {
-            LivingEntity[] ennemies = FindObjectsOfType<LivingEntity>();
-            foreach (LivingEntity ennemy in ennemies)
+            LivingEntity[] entities = FindObjectsOfType<LivingEntity>();
+            foreach (LivingEntity entity in entities)
             {
-                if (ennemy.tag != "Player")
-                    Destroy(ennemy.gameObject);
+                if (entity.tag != "Player")
+                    Destroy(entity.gameObject);
+                else
+                    entity.Reset();
             }
             uiManager.SetWaveLostMenuVisibility(false);
             uiManager.SetWaveWonMenuVisibility(false);

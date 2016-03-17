@@ -10,13 +10,19 @@ namespace Assets.GameTree.Functions
     {
 		private SpawnManager spawnManager;
 
-        string name;
-        string value;
+        public string value;
 		
         public SpawnEnemyFunction(GameTreeEngine _engine) : base(_engine)
         { 
 			spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
 		}
+
+        public SpawnEnemyFunction(SpawnEnemyFunction _operator) : base(_operator)
+        {
+            spawnManager = _operator.spawnManager;
+            Name = _operator.Name;
+            value = _operator.value;
+        }
 
         public override void Activate()
         {
@@ -27,7 +33,7 @@ namespace Assets.GameTree.Functions
         {
             base.Setup();
 
-            if (name == "Type" && spawnManager)
+            if (Name == "Type" && spawnManager)
                 spawnManager.AddToQueue(value, this);
         }
 
@@ -40,7 +46,7 @@ namespace Assets.GameTree.Functions
         {
             if(_name == "Type")
 			{
-                name = _name;
+                Name = _name;
                 value = _value;
 			}
         }
@@ -55,5 +61,43 @@ namespace Assets.GameTree.Functions
 					State = GameOperatorState.FAILURE;					
 			}				
 		}
+
+        protected override void Easier()
+        {
+            base.Easier();
+
+            if (value == "ShooterEnemy")
+            {
+                if (m_Engine.nbShooterEnemy > 1)
+                {
+                    m_Engine.GetTreeElementOfOperator(this).Father.Remove(this);
+                    --m_Engine.nbShooterEnemy;
+                }
+            }
+            else if (value == "BasicEnemy")
+            {
+                if (m_Engine.nbBasicEnemy > 1)
+                {
+                    m_Engine.GetTreeElementOfOperator(this).Father.Remove(this);
+                    --m_Engine.nbBasicEnemy;
+                }
+            }
+        }
+
+        protected override void Harder()
+        {
+            base.Harder();
+
+            m_Engine.GetTreeElementOfOperator(this).Father.Add(new GameTreeElement(m_Engine.GetTreeElementOfOperator(this)));
+            
+            if (value == "BasicEnemy")
+            {
+                ++m_Engine.nbBasicEnemy;
+            }
+            else if (value == "ShooterEnemy")
+            {
+                ++m_Engine.nbShooterEnemy;
+            }
+        }
     }
 }

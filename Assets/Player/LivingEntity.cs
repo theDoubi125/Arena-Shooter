@@ -13,8 +13,13 @@ public class LivingEntity : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        health = maxHealth;
+        Reset();
 	}
+
+    public void Reset()
+    {
+        health = maxHealth;
+    }
 
     public void Damage(int damage)
     {
