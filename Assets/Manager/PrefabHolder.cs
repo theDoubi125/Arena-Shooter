@@ -11,6 +11,7 @@ public class PrefabHolder : MonoBehaviour
 
     public GameObject BasicEnemy;
     public GameObject ShooterEnemy;
+    public GameObject BossEnemy;
 
     public void Awake()
     {
@@ -21,7 +22,7 @@ public class PrefabHolder : MonoBehaviour
 	{
 		if(type.Equals("BasicEnemy"))
 			return BasicEnemy;
-		else if(type.Equals("ShooterEnemy"))
+		else if(type.Equals("ShooterEnemy") )
 			return ShooterEnemy;
 		else
 			return null;
