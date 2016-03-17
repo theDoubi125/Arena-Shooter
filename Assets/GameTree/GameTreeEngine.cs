@@ -50,9 +50,9 @@ namespace Assets.GameTree
 				if(gameManager != null)
 				{
 					if(m_CurrentTree.GetRootOperator().State == GameTreeOperator.GameOperatorState.SUCCESS)
-						gameManager.WaveWon(true);
+						gameManager.WaveComplete(true);
 					else if(m_CurrentTree.GetRootOperator().State == GameTreeOperator.GameOperatorState.FAILURE)
-						gameManager.WaveWon(false);					
+						gameManager.WaveComplete(false);					
 				}
 				
 			}
