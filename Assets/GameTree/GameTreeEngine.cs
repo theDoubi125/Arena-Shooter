@@ -22,7 +22,7 @@ namespace Assets.GameTree
         void Start()
         {
             Load(m_File);
-            SwitchTree("SimpleTree");
+            SwitchTree("ComplexTree");
         }
 
         void Update()
@@ -32,7 +32,7 @@ namespace Assets.GameTree
                 if (Input.GetButtonDown("Submit"))
                 {
                     gameManager.Reset();
-                    SwitchTree("SimpleTree");
+                    SwitchTree("ComplexTree");
                 }
             }
             else if(m_CurrentTree != null)

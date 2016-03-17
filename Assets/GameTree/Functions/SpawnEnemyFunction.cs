@@ -42,8 +42,6 @@ namespace Assets.GameTree.Functions
 			{
                 name = _name;
                 value = _value;
-// 				if(spawnManager != null)
-// 					spawnManager.AddToQueue(_value, this);
 			}
         }
 		
