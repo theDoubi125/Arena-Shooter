@@ -8,7 +8,7 @@ public class LivingEntity : MonoBehaviour
     public int maxHealth;
     private int health;
 
-    public int Health { get { return health; } }
+    public int Health { get { return health; } set { health = value; } }
 	
 	private SpawnEnemyFunction spawnEnemyFunction = null;
 

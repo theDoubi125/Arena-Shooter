@@ -75,6 +75,7 @@
 				
 				<GameTreeElement name="BossEnemySpawn" type="SpawnEnemyFunction">
 				  <attribute name="Type" value="BossEnemy"/>
+				  <attribute name="Health" value="8"/>
 				</GameTreeElement>
 			
               </childs>

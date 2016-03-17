@@ -15,11 +15,13 @@ public class SpawnManager : MonoBehaviour
     {
 		public string type;
 		public SpawnEnemyFunction function;
+        public int health;
 		
-		public SpawnQuery(string type, SpawnEnemyFunction function)
+		public SpawnQuery(string type, SpawnEnemyFunction function, int health)
         {
             this.type = type;
             this.function = function;
+            this.health = health;
         }
     } 
 
@@ -39,9 +41,9 @@ public class SpawnManager : MonoBehaviour
 		spawnQueryQueue.Clear();
 	}
 	
-	public void AddToQueue(string type, SpawnEnemyFunction function)
+	public void AddToQueue(string type, SpawnEnemyFunction function, int health)
 	{
-		spawnQueryQueue.Enqueue(new SpawnQuery(type, function));
+		spawnQueryQueue.Enqueue(new SpawnQuery(type, function, health));
 	}
 	
 	public void Spawn()
@@ -66,9 +68,13 @@ public class SpawnManager : MonoBehaviour
 			
 			LivingEntity spawnedEntity = spawnedObject.GetComponent<LivingEntity>();			
 			if(spawnedEntity != null)
-				spawnedEntity.SetSpawnEnemyFunction(query.function);
+            {
+                spawnedEntity.SetSpawnEnemyFunction(query.function);
+                if (query.health != 0)
+                    spawnedEntity.Health = query.health;
+            }
 		}
 		else
-			Debug.Log("Can't instanciate the enemy prefab.");
+			Debug.Log("Can't instantiate the enemy prefab.");
 	}
 }
