@@ -34,7 +34,7 @@ public class LivingEntity : MonoBehaviour
 						enemyEntity.SetHasWon(-1);
 				}
 				
-				GameOver();
+				PlayerDied();
 			}
 			else
 			{
@@ -52,7 +52,7 @@ public class LivingEntity : MonoBehaviour
             health = maxHealth;
     }
 	
-	private void GameOver()
+	private void PlayerDied()
 	{
 		GameObject gameManagerGO = GameObject.Find("GameManager");
 		
@@ -60,7 +60,7 @@ public class LivingEntity : MonoBehaviour
 		{
 			GameManager gameManager = gameManagerGO.GetComponent<GameManager>();
 			if (gameManager != null)
-				gameManager.GameOver();
+				gameManager.WaveWon(false);
 		}
 	}
 	

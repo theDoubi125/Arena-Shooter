@@ -31,11 +31,14 @@ namespace Assets.GameTree
 			{
                 m_CurrentTree.Update();
 			
-				if(m_CurrentTree.GetRootOperator().State == GameTreeOperator.GameOperatorState.SUCCESS)
+				if(gameManager != null)
 				{
-					if(gameManager != null)
-						gameManager.WaveWon();
-				}				
+					if(m_CurrentTree.GetRootOperator().State == GameTreeOperator.GameOperatorState.SUCCESS)
+						gameManager.WaveWon(true);
+					else if(m_CurrentTree.GetRootOperator().State == GameTreeOperator.GameOperatorState.FAILURE)
+						gameManager.WaveWon(false);					
+				}
+				
 			}
         }
 

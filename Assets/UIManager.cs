@@ -14,20 +14,20 @@ public class UIManager : MonoBehaviour
 	
 	}
 	
-	public void SetGameOverMenuVisibility(bool visibility)
+	public void SetWaveLostMenuVisibility(bool visibility)
 	{
-		GameObject gameOverMenuGO = GameObject.Find("GameOverCanvas");
+		GameObject waveLostMenuGO = GameObject.Find("WaveLostCanvas");
 		
-		if(gameOverMenuGO != null)
+		if(waveLostMenuGO != null)
 		{
 			if (visibility)
 			{
-				gameOverMenuGO.GetComponent<Canvas>().enabled = true;
+				waveLostMenuGO.GetComponent<Canvas>().enabled = true;
 				Time.timeScale = 0f;
 			}
 			else
 			{
-				gameOverMenuGO.GetComponent<Canvas>().enabled = false;
+				waveLostMenuGO.GetComponent<Canvas>().enabled = false;
 				Time.timeScale = 1.0f;
 			}			
 		}

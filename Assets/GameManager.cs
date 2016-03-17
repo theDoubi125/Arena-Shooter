@@ -23,14 +23,14 @@ public class GameManager : MonoBehaviour
 	{
 	}
 	
-	public void GameOver()
+	public void WaveWon(bool success)
 	{
 		if(this.uiManager != null)
-			this.uiManager.SetGameOverMenuVisibility(true);
-	}
-	public void WaveWon()
-	{
-		if(this.uiManager != null)
-			this.uiManager.SetWaveWonMenuVisibility(true);
+		{
+			if(success)
+				this.uiManager.SetWaveWonMenuVisibility(true);	
+			else		
+				this.uiManager.SetWaveLostMenuVisibility(true);
+		}
 	}
 }
