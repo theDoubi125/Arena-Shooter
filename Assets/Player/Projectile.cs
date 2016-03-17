@@ -26,12 +26,19 @@ public class Projectile : MonoBehaviour {
         float angle = Vector2.Angle(Vector2.right, body.velocity);
         if (body.velocity.y < 0)
             angle = -angle;
+		/* dafuq ??*/		
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+		
+		/* If it moves out of the screen we destroy it */
+		Vector3 vpPosition = Camera.main.WorldToViewportPoint(this.transform.position);
+		if(vpPosition.x < 0.001 || vpPosition.x > 1.001 || vpPosition.y < 0.001 || vpPosition.y > 1.001)
+            Destroy(gameObject);
+			
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        print(other);
+        //print(other);
         if(other.gameObject != launcher)
         {
             LivingEntity entity = other.GetComponent<LivingEntity>();

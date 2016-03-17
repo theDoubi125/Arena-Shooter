@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LivingEntity : MonoBehaviour {
+public class LivingEntity : MonoBehaviour 
+{
     public int maxHealth;
     private int health;
 
@@ -15,7 +16,12 @@ public class LivingEntity : MonoBehaviour {
     {
         health -= damage;
         if (health <= 0)
-            Destroy(gameObject);
+		{
+			if(this.tag.Equals("Player"))
+				GameOver();
+			else
+				Destroy(gameObject);			
+		}
     }
 
     public void Heal(int heal)
@@ -24,4 +30,16 @@ public class LivingEntity : MonoBehaviour {
         if (health > maxHealth)
             health = maxHealth;
     }
+	
+	private void GameOver()
+	{
+		GameObject gameManagerGO = GameObject.Find("GameManager");
+		
+		if(gameManagerGO != null)
+		{
+			GameManager gameManager = gameManagerGO.GetComponent<GameManager>();
+			if (gameManager != null)
+				gameManager.GameOver();
+		}
+	}
 }
