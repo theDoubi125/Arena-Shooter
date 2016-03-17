@@ -8,6 +8,10 @@ public class ChargeEnemy : MonoBehaviour {
     protected Rigidbody2D body;
     public float maxSpeed, acceleration, friction;
 
+    [SerializeField]
+    private int contactDamage;
+    private float timeContact = 0;
+
 	void Start ()
     {
         target = GameObject.FindGameObjectWithTag("Player");
@@ -24,4 +28,17 @@ public class ChargeEnemy : MonoBehaviour {
                 body.velocity = body.velocity.normalized * maxSpeed;
         }
 	}
+
+    void OnCollisionStay2D(Collision2D Collision)
+    {
+        if (Collision.collider.tag == "Player")
+        {
+            timeContact += Time.fixedDeltaTime;
+            if (timeContact > 0.7f)
+            {
+                timeContact = 0;
+                Collision.collider.GetComponent<LivingEntity>().Damage(contactDamage);
+            }
+        }
+    }
 }

@@ -88,15 +88,22 @@ namespace Assets.GameTree.Functions
         {
             base.Harder();
 
-            m_Engine.GetTreeElementOfOperator(this).Father.Add(new GameTreeElement(m_Engine.GetTreeElementOfOperator(this)));
-            
-            if (value == "BasicEnemy")
+            GameTreeElement father = m_Engine.GetTreeElementOfOperator(this).Father;
+            if (father != null && Name != "Root")
             {
-                ++m_Engine.nbBasicEnemy;
-            }
-            else if (value == "ShooterEnemy")
-            {
-                ++m_Engine.nbShooterEnemy;
+                father.Add(new GameTreeElement(m_Engine.GetTreeElementOfOperator(this)));
+
+                if (value == "BasicEnemy")
+                {
+                    ++m_Engine.nbBasicEnemy;
+                }
+                else if (value == "ShooterEnemy")
+                {
+                    ++m_Engine.nbShooterEnemy;
+                }
+
+                if (father.Father != null && Name != "Root")
+                    father.Father.Add(new GameTreeElement(father));
             }
         }
     }
