@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Warning : spawnManager null in GameManager");
     }
 
-    public void WaveWon(bool success)
+    public void WaveComplete(bool success)
     {
         if (this.uiManager != null)
         {
