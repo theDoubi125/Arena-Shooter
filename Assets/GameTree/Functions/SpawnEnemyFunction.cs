@@ -27,14 +27,14 @@ namespace Assets.GameTree.Functions
         public override void Activate()
         {
             base.Activate();
+
+            if (Name == "Type" && spawnManager)
+                spawnManager.AddToQueue(value, this);
         }
 
         public override void Setup()
         {
             base.Setup();
-
-            if (Name == "Type" && spawnManager)
-                spawnManager.AddToQueue(value, this);
         }
 
         public override void Update()
