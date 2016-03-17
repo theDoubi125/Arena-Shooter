@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<GameTreeDescription>
+  <GameTree name="SimpleTree" difficulty="0">
+    
+    <GameTreeElement name="Root" type="ParallelAnd">
+      <childs>
+        
+        <GameTreeElement name="Timer5" type="TimerFunction">
+          <attribute name="Time" value="5"/>
+        </GameTreeElement>
+        
+        <GameTreeElement name="Timer10" type="TimerFunction">
+          <attribute name="Time" value="10"/>
+        </GameTreeElement>
+        
+        <GameTreeElement name="Sequence1" type="SequentialAnd">
+          <childs>
+            
+            <GameTreeElement name="SeqTimer1" type="TimerFunction">
+              <attribute name="Time" value="2.5"/>
+            </GameTreeElement>
+            
+            <GameTreeElement name="SeqTimer2" type="TimerFunction">
+              <attribute name="Time" value="2.5"/>
+            </GameTreeElement>
+            
+          </childs>
+        </GameTreeElement>
+        
+        <GameTreeElement name="ParallelOr1" type="ParallelOr">
+          <childs>
+            <GameTreeElement name="FailureAwaits" type="DebugFailureFonction"/>
+            
+            <GameTreeElement name="Timer10" type="TimerFunction">
+              <attribute name="Time" value="10"/>
+            </GameTreeElement>
+            
+          </childs>
+        </GameTreeElement>
+        
+      </childs>
+    </GameTreeElement>
+    
+  </GameTree>
+</GameTreeDescription>
