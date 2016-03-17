@@ -8,11 +8,14 @@ namespace Assets.GameTree.Functions
 {
     public class SpawnEnemyFunction : GameTreeOperator
     {
-		private SpawnManager spanwManager;
+		private SpawnManager spawnManager;
+
+        string name;
+        string value;
 		
         public SpawnEnemyFunction(GameTreeEngine _engine) : base(_engine)
         { 
-			spanwManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+			spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
 		}
 
         public override void Activate()
@@ -23,6 +26,9 @@ namespace Assets.GameTree.Functions
         public override void Setup()
         {
             base.Setup();
+
+            if (name == "Type" && spawnManager)
+                spawnManager.AddToQueue(value, this);
         }
 
         public override void Update()
@@ -34,8 +40,10 @@ namespace Assets.GameTree.Functions
         {
             if(_name == "Type")
 			{
-				if(spanwManager != null)
-					spanwManager.AddToQueue(_value, this);
+                name = _name;
+                value = _value;
+// 				if(spawnManager != null)
+// 					spawnManager.AddToQueue(_value, this);
 			}
         }
 		

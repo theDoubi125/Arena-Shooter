@@ -12,6 +12,13 @@ namespace Assets.GameTree.Operators
         public SequentialAnd(GameTreeEngine _engine) : base(_engine)
         {}
 
+        public override void Setup()
+        {
+            base.Setup();
+
+            m_CurrentlyActive = 0;
+        }
+
         public override void Activate()
         {
             base.Activate();

@@ -27,7 +27,15 @@ namespace Assets.GameTree
 
         void Update()
         {
-            if(m_CurrentTree != null)
+            if (gameManager != null && gameManager.uiManager.isVisible())
+            {
+                if (Input.GetButtonDown("Submit"))
+                {
+                    gameManager.Reset();
+                    SwitchTree("SimpleTree");
+                }
+            }
+            else if(m_CurrentTree != null)
 			{
                 m_CurrentTree.Update();
 			

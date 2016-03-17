@@ -13,6 +13,14 @@ public class UIManager : MonoBehaviour
 	void Update () {
 	
 	}
+
+    public bool isVisible()
+    {
+        GameObject waveLostMenuGO = GameObject.Find("WaveLostCanvas");
+        GameObject waveWonMenuGO = GameObject.Find("WaveWonCanvas");
+        return waveLostMenuGO != null && waveLostMenuGO.GetComponent<Canvas>().enabled
+            || waveWonMenuGO != null && waveWonMenuGO.GetComponent<Canvas>().enabled;
+    }
 	
 	public void SetWaveLostMenuVisibility(bool visibility)
 	{
