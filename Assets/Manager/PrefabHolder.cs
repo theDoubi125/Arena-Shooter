@@ -16,4 +16,14 @@ public class PrefabHolder : MonoBehaviour
     {
         s_Instance = this;
     }
+	
+	public GameObject GetEnemyPrefabFromType(string type)
+	{
+		if(type.Equals("BasicEnemy"))
+			return BasicEnemy;
+		else if(type.Equals("ShooterEnemy"))
+			return ShooterEnemy;
+		else
+			return null;
+	}
 }

@@ -9,6 +9,8 @@ namespace Assets.GameTree
 {
     public class GameTreeEngine : MonoBehaviour
     {
+		public GameManager gameManager = null;
+		
         GameTree m_CurrentTree = null;
         Dictionary<string, GameTree> m_Trees = new Dictionary<string, GameTree>();
 
@@ -26,7 +28,15 @@ namespace Assets.GameTree
         void Update()
         {
             if(m_CurrentTree != null)
+			{
                 m_CurrentTree.Update();
+			
+				if(m_CurrentTree.GetRootOperator().State == GameTreeOperator.GameOperatorState.SUCCESS)
+				{
+					if(gameManager != null)
+						gameManager.WaveWon();
+				}				
+			}
         }
 
         void SwitchTree(string _tree)

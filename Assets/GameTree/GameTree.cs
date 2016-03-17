@@ -7,7 +7,7 @@ using System.Xml;
 namespace Assets.GameTree
 {
     public class GameTree
-    {
+    {		
         GameTreeElement m_root;
         public string Name { get; private set; }
         public int DifficultyRating { get; set; }

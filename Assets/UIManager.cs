@@ -32,4 +32,22 @@ public class UIManager : MonoBehaviour
 			}			
 		}
 	}	
+	public void SetWaveWonMenuVisibility(bool visibility)
+	{
+		GameObject waveWonMenuGO = GameObject.Find("WaveWonCanvas");
+		
+		if(waveWonMenuGO != null)
+		{
+			if (visibility)
+			{
+				waveWonMenuGO.GetComponent<Canvas>().enabled = true;
+				Time.timeScale = 0f;
+			}
+			else
+			{
+				waveWonMenuGO.GetComponent<Canvas>().enabled = false;
+				Time.timeScale = 1.0f;
+			}			
+		}
+	}	
 }

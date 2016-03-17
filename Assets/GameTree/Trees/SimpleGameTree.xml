@@ -16,11 +16,11 @@
         <GameTreeElement name="Sequence1" type="SequentialAnd">
           <childs>
             
-            <GameTreeElement name="SeqTimer1" type="TimerFunction">
-              <attribute name="Time" value="2.5"/>
+            <GameTreeElement name="BasicEnemySpawn" type="SpawnEnemyFunction">
+              <attribute name="Type" value="BasicEnemy"/>
             </GameTreeElement>
             
-            <GameTreeElement name="SeqTimer2" type="TimerFunction">
+            <GameTreeElement name="SeqTimer1" type="TimerFunction">
               <attribute name="Time" value="2.5"/>
             </GameTreeElement>
             
@@ -31,8 +31,8 @@
           <childs>
             <GameTreeElement name="FailureAwaits" type="DebugFailureFonction"/>
             
-            <GameTreeElement name="Timer10" type="TimerFunction">
-              <attribute name="Time" value="10"/>
+            <GameTreeElement name="ShooterEnemySpawn" type="SpawnEnemyFunction">
+              <attribute name="Type" value="ShooterEnemy"/>
             </GameTreeElement>
             
           </childs>
