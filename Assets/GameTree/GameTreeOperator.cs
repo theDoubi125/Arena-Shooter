@@ -26,7 +26,7 @@ namespace Assets.GameTree
             {
                 m_state = value;
                 harder = (m_state == GameOperatorState.SUCCESS);
-                easier = (m_state == GameOperatorState.FAILURE);
+                easier = (m_state == GameOperatorState.FAILURE || m_state == GameOperatorState.INDETERMINATE);
             }
         }
 

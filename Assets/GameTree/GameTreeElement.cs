@@ -50,6 +50,12 @@ namespace Assets.GameTree
                 constructor = type.GetConstructor(new Type[] { type });
                 Add(constructor.Invoke(new object[] { op }) as GameTreeOperator);
             }
+
+            foreach (GameTreeElement child in m_childs)
+            {
+                child.m_father = this;
+            }
+
             m_father = _elem.Father;
         }
 
